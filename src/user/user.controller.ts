@@ -10,7 +10,6 @@ import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
 import { ValidationPipe } from 'src/shared/validation.pipe';
 import { AuthGuard } from 'src/shared/auth.guard';
-import { User } from './user.decorator';
 
 @Controller()
 export class UserController {
@@ -18,13 +17,7 @@ export class UserController {
 
   @Get('api/users')
   @UseGuards(new AuthGuard())
-  showAllUsers(@User() user) {
-    console.log('');
-    console.log('');
-    console.log(user);
-    console.log('');
-    console.log('');
-    console.log('');
+  showAllUsers() {
     return this.userService.showAllUsers();
   }
 
