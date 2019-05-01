@@ -96,7 +96,7 @@ export class IdeaService {
   private async getIdeaById(id: string) {
     const idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author', 'upvotes', 'downvotes'],
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
     if (!idea) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
