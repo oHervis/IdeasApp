@@ -8,6 +8,7 @@ import {
   ValidationPipe,
   Body,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { AuthGuard } from 'src/shared/auth.guard';
@@ -19,12 +20,12 @@ export class CommentController {
   constructor(private commentService: CommentService) {}
 
   @Get('idea/:id')
-  showCommentsByIdea(@Param('id') id: string) {
-    return this.commentService.showByIdea(id);
+  showCommentsByIdea(@Param('id') id: string, @Query('page') page: number) {
+    return this.commentService.showByIdea(id, page);
   }
   @Get('user/:id')
-  showCommentsByUser(@Param('id') user: string) {
-    return this.commentService.showByUser(user);
+  showCommentsByUser(@Param('id') user: string, @Query('page') page: number) {
+    return this.commentService.showByUser(user, page);
   }
 
   @Post('idea/:id')
